@@ -1,0 +1,43 @@
+<app-header></app-header>
+<mat-grid-list cols="2" rowHeight="100vh">
+  <mat-grid-tile>
+    <!-- Left side with background image -->
+    <div class="background"></div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <!-- Right side with login form -->
+    <div class="login-container">
+      <mat-card class="login-card">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <div class="spacer"></div>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email or Username</mat-label>
+              <input matInput formControlName="identifier" placeholder="Enter your identifier or username">
+              <mat-error
+                *ngIf="loginForm.get('identifier')?.invalid && (loginForm.get('identifier')?.dirty || loginForm.get('identifier')?.touched)">
+                Please enter a email or username
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password" placeholder="Enter your password"
+                     [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                Please enter a password
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

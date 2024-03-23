@@ -1,0 +1,14 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ccc; /* Placeholder for profile picture */
+  margin-right: 16px;
+}

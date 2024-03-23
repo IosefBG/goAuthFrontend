@@ -1,0 +1,38 @@
+.active {
+  background-color: rgba(0, 0, 0, 0.1); /* Example styling for active link */
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px; /* Adjust the gap between items as needed */
+}
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list {
+  display: flex;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.loading-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure it's above other content */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 8px;
+}
