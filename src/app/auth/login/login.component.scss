@@ -1,0 +1,42 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  width: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.background {
+  //background-image: url('path/to/background-image.jpg'); /* Replace with the path to your background image */
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  width: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spacer {
+  height: 16px; /* Adjust the spacing as needed */
+  flex: 0 0 auto;
+}
+
