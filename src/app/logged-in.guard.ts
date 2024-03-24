@@ -4,7 +4,6 @@ import {environment} from "../environments/environment";
 
 export const loggedInGuard: CanActivateFn = (route, state) => {
   const router: Router = inject(Router)
-  // const stateService: StateService = inject(StateService);
   const protectedRoutes: string[] = ['/login', '/register']
   const token = localStorage.getItem(`${environment.STORAGE_ITEM_NAME}token`);
   return protectedRoutes.includes(state.url) && token !== null ? router.navigate(['/home']) : true;

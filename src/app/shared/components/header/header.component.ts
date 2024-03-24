@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StateService} from "../../state.service";
 import {ToastService} from "../../toast.service";
 import {environment} from "../../../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ];
   isLoggedIn: boolean = false;
 
-  constructor(private stateService: StateService, private toastService: ToastService) {
+  constructor(private stateService: StateService, private toastService: ToastService, private router: Router) {
   }
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
     this.stateService.loggedIn$.subscribe(loggedIn => {
       if (loggedIn) {
         this.toastService.showToast('success', 'Te-ai logat cu succes!')
+        this.router.navigate(['/profile']);
       }
       this.isLoggedIn = loggedIn || localStorage.getItem(`${environment.STORAGE_ITEM_NAME}token`) !== null
     });

@@ -47,7 +47,8 @@ export class AuthService {
     return this.http.get<any>(`${this.apiUrl}/activeSessions`, {observe: 'response'})
   }
 
-  revokeSession():Observable<HttpResponse<SessionsResponse>> {
-    return this.http.get<any>(`${this.apiUrl}/revokeSession`, {observe: 'response'})
+  revokeSession(sessionId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/revokeSession`, {session_id: sessionId}, {observe: 'response'});
   }
+
 }

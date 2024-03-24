@@ -31,3 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## yarn run ng generate component ./auth/login
 
 todo:
+# cand te loghezi exista un bug care iti da redirect cumva ciudat
+# cand stergi o sesiune din tabel se sterg 2 linii? why
+# du te dracu
