@@ -3,18 +3,18 @@
   <mat-card>
     <mat-card-header>
       <div mat-card-avatar class="profile-avatar"></div>
-      <mat-card-title>{{ user?.username }}</mat-card-title>
-      <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+      <mat-card-title>{{ userData?.user?.username }}</mat-card-title>
+      <mat-card-subtitle>{{ userData?.user?.email }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <div>
         <h3>About Me</h3>
-        <p>{{ user?.about }}</p>
+        <!--        <p>{{ userData?.about }}</p>-->
       </div>
       <div>
         <h3>Contact Information</h3>
-        <p>Email: {{ user?.email }}</p>
-        <p>Phone: {{ user?.phone }}</p>
+        <p>Email: {{ userData?.user?.email }}</p>
+        <!--        <p>Phone: {{ userData?.phone }}</p>-->
       </div>
     </mat-card-content>
     <mat-card-actions>
@@ -53,6 +53,14 @@
 
               <ng-container *ngSwitchCase="column.field === 'number'">
                 {{ rowIndex + 1 }}
+              </ng-container>
+
+              <ng-container *ngSwitchCase="column.field === 'browser_used'">
+                {{ session[column.field] }}
+                <ng-container *ngIf="session.id === userData?.session?.id">
+                  <span style="color:green;font-weight: bold">( Active )</span>
+                </ng-container>
+
               </ng-container>
 
               <ng-container *ngSwitchDefault>

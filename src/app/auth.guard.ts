@@ -5,7 +5,6 @@ import {environment} from "../environments/environment";
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router: Router = inject(Router)
   const protectedRoutes: string[] = ['/profile']
-  const token = localStorage.getItem(`${environment.STORAGE_ITEM_NAME}token`);
-  console.log(token)
+  const token = localStorage.getItem(environment.STORAGE_TOKEN);
   return protectedRoutes.includes(state.url) && token === null ? router.navigate(['/login']) : true;
 };

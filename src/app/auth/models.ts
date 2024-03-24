@@ -13,6 +13,7 @@ export interface User {
 export interface AuthResponse {
   token: string;
   user: User;
+  session: SessionsResponse,
 }
 
 export interface UserLoginRequest {
@@ -21,8 +22,14 @@ export interface UserLoginRequest {
 }
 
 export interface SessionsResponse {
-  id: number,
-  ip_address: string,
-  created_at: Date,
-  updated_at: Date,
+  id?: number,
+  ip_address?: string,
+  created_at?: Date,
+  updated_at?: Date,
+}
+
+export interface UserData {
+  token: string;
+  user: User;
+  session: SessionsResponse,
 }

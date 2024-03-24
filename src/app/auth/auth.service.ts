@@ -35,8 +35,8 @@ export class AuthService {
   handleResponse(response: HttpResponse<AuthResponse>) {
     if (response.status === 200) {
       if (response.body) {
-        localStorage.setItem(`${environment.STORAGE_ITEM_NAME}token`, response.body.token);
-        localStorage.setItem(`${environment.STORAGE_ITEM_NAME}userData`, JSON.stringify(response.body.user));
+        localStorage.setItem(environment.STORAGE_TOKEN, response.body.token);
+        localStorage.setItem(environment.STORAGE_USER_DATA, JSON.stringify(response.body));
       }
     }
     this.stateService.setLoggedIn(response.status === 200);
@@ -51,4 +51,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/revokeSession`, {session_id: sessionId}, {observe: 'response'});
   }
 
+  logout() {
+    return this.http.post(`${this.apiUrl}/logout`, {}, {observe: 'response'})
+  }
 }

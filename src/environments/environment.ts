@@ -6,7 +6,9 @@ export const environment = {
   production: false,
   api: 'http://localhost:8001/api',
   HASH_SECRET: 'secret-key',
-  STORAGE_ITEM_NAME: 'recruto_'
+  STORAGE_ITEM_NAME: 'recruto_',
+  STORAGE_TOKEN: 'recruto_token',
+  STORAGE_USER_DATA: 'recruto_user_data'
 };
 
 /*

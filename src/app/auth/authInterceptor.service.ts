@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem(`${environment.STORAGE_ITEM_NAME}token`);
+    const token = localStorage.getItem(environment.STORAGE_TOKEN);
 
     if (token) {
       let headers: Record<string, string> = {};

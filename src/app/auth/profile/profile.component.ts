@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import {AuthService} from "../auth.service";
-import {SessionsResponse} from "../models";
+import {SessionsResponse, UserData} from "../models";
 import {catchError, Subject, takeUntil, tap, throwError} from "rxjs";
 import {ToastService} from "../../shared/toast.service";
 
@@ -14,7 +14,7 @@ import {ToastService} from "../../shared/toast.service";
 export class ProfileComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
 
-  user: any;
+  userData!: UserData;
   sessionsDataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // MatTableDataSource for sessionsDataSource data
   displayedColumns = [
     {field: 'number', header: 'No.'},
@@ -36,12 +36,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.sessionsDataSource = new MatTableDataSource<SessionsResponse>(response.body);
       }
     });
-    const userData = localStorage.getItem(`${environment.STORAGE_ITEM_NAME}userData`);
-    if (userData) {
-      this.user = JSON.parse(userData);
-    } else {
-      // Handle case where user data is not found in localStorage
-      console.error('User data not found in localStorage');
+    if (localStorage.getItem(environment.STORAGE_TOKEN)) {
+      const userData = localStorage.getItem(environment.STORAGE_USER_DATA);
+      if (userData) {
+        this.userData = JSON.parse(userData);
+      } else {
+        this.toastService.showToast('error', 'Something went wrong')
+      }
     }
   }
 
@@ -53,7 +54,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.toastService.showToast('success', 'Sesiunea a fost stearsa cu succes!')
           const index = this.sessionsDataSource.data.findIndex(session => session.id === sessionId);
           if (index !== -1) {
-            this.sessionsDataSource = new MatTableDataSource<any>(this.sessionsDataSource.data.splice(index, 1));
+            const newData = [...this.sessionsDataSource.data];
+            newData.splice(index, 1);
+            this.sessionsDataSource = new MatTableDataSource<any>(newData);
           }
         }
       }),
