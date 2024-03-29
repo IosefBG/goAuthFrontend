@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="main-container">
+
+  <div style="height:3rem"></div>
+  <div class="wrapper">
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="example-box"
+        *ngFor="let item of todo"
+        cdkDrag
+        (mousedown)="off={x:$event.offsetX||0,y:$event.offsetY||0}"
+        [cdkDragData]="item"
+        (cdkDragMoved)="moved($event)"
+      >
+        {{ item.label }}
+        <div *cdkDragPlaceholder class="field-placeholder"></div>
+      </div>
+    </div>
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      class="drag-zone"
+      cdkDropListSortingDisabled="true"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container *ngFor="let item of done">
+        <div
+          cdkDrag
+          class="item-box"
+          [style.top.px]="item.y"
+          [style.left.px]="item.x"
+          [style.z-index]="item['z-index']"
+          (cdkDragStarted)="changeZIndex(item)"
+          (cdkDragDropped)="changePosition($event, item)"
+        >
+          {{ item.label }}
+          <div *cdkDragPlaceholder class="field-placeholder"></div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="wrapper">
+  <pre
+  >{{ todo | json }}
+</pre
+>
+    <pre
+    >{{ done | json }}
+</pre
+>
+  </div>
+
+
+</div>

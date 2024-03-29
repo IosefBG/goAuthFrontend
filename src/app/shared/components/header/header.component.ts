@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   navLinks: { path: string, displayName: string }[] = [
     {path: '/home', displayName: 'Home'},
+    {path: '/resumeMaker', displayName: 'Resume Maker'},
   ];
   isLoggedIn: boolean = false;
 

@@ -24,6 +24,11 @@ const routes: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./auth/profile/profile.module').then(m => m.ProfileModule)
   },
+  {
+    path: 'resumeMaker',
+    canActivate: [authGuard],
+    loadChildren: () => import('./resumemaker/resumemaker.module').then(m => m.ResumemakerModule)
+  },
 ]
 
 @NgModule({
